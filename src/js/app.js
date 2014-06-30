@@ -11,7 +11,7 @@ define('app', ['domReady!', 'underscore', 'changeMachine'], function (document, 
 
         successTemplate = '' +
             '<div class="success">' +
-                '<p>The most efficient change is: </p>' +
+                '<p>The most efficient change for <%- finalValue %> is: </p>' +
                 '<ul>' +
                     '<% _.each(coins, function(coin) { %>' +
                         '<li class="coin">' +
@@ -31,19 +31,17 @@ define('app', ['domReady!', 'underscore', 'changeMachine'], function (document, 
             resultElement.innerHTML = '';
         },
 
-        displayCoins = function (coins) {
-            var _getCoin = function (value) {
-                    if (value > 100) { return '£' + (value / 100); }
-                    else { return value + 'p'; }
-                };
-
+        displayCoins = function (finalValue, coins) {
             coins = _.map(coins, function (item) {
                 return {
                     amount: item.amountCoins,
-                    kind: _getCoin(item.valueCoin)
+                    kind: item.valueCoin >= 100 ? '£' + (item.valueCoin / 100) : item.valueCoin + 'p'
                 };
             });
-            resultElement.innerHTML = _.template(successTemplate, {'coins': coins});
+            resultElement.innerHTML = _.template(successTemplate, {
+                finalValue: '£' + parseFloat(finalValue / 100),
+                coins: coins
+            });
         },
 
         submit = function (e) {
@@ -51,9 +49,9 @@ define('app', ['domReady!', 'underscore', 'changeMachine'], function (document, 
             var change = new ChangeMachine(amountInputElement.value);
 
             if (change.isValid()) {
-                displayCoins(change.getCoins());
+                displayCoins(change.parse(), change.getCoins());
             } else {
-                resultElement.innerHTML = _.template(rejectTemplate, {'value': amountInputElement.value});
+                resultElement.innerHTML = _.template(rejectTemplate, {value: amountInputElement.value});
             }
 
             console.log('Submitted');
