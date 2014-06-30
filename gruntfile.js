@@ -35,16 +35,22 @@ module.exports = function (grunt) {
                 options: {
                     baseUrl: 'src/',
                     mainConfigFile: 'src/js/config.js',
-                    out: 'src/js/app.js'
+                    out: 'src/js/build/app.js'
                 }
             }
         },
 
         jasmine: {
-            src: 'src/js/**/*.js',
+            src: ['src/js/app.js', 'src/js/changeMachine.js'],
             options: {
-                specs: 'src/js/**/*Spec.js',
-                vendor: 'src/js/libs/**/*.js'
+                specs: 'src/js/specs/*Spec.js',
+                vendor: ['src/js/libs/requirejs/require.js',
+                         'src/js/specs/config.js',
+                         'src/js/specs/libs/mockDomReady.js',
+                         'src/js/libs/underscore/underscore.js'],
+                outfile: 'src/js/specs/specRunner.html',
+                keepRunner: true,
+                template: 'custom.tmpl'
             }
         },
 
@@ -80,7 +86,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('dev', 'Compile and open', [
-        'sass:dev', 'jshint', 'jasmine', 'connect:dev'
+        'sass:dev', 'jshint', 'connect:dev'
     ]);
 
     grunt.registerTask('prod', 'Compile and run server', [
