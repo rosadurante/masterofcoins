@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Jasmine Spec Runner</title>
+  <link rel="shortcut icon" type="image/png" href="<%= temp %>/jasmine_favicon.png">
+<% css.forEach(function(style){ %>
+  <link rel="stylesheet" type="text/css" href="<%= style %>">
+<% }) %>
+
+</head>
+<body>
+<% with (scripts) { %>
+  <% [].concat(polyfills, jasmine, boot, vendor, helpers, src, specs,reporters).forEach(function(script){ %>
+  <script src="<%= script %>"></script>
+  <% }) %>
+<% }; %>
+
+<div id="helpers">
+  <form id="input-form" action="" method="post">
+    <label for="amount">Introduce amount:</label>
+    <input type="text" id="amount" name="amount" placeholder="Examples: £3.4, 85p, 3.45, £0.90">
+    <input type="submit" id="submit-form" value="Calculate"> 
+    <input type="button" id="reset-form" value="Reset">
+  </form>
+
+  <div id="output-form"></div>
+</div>
+
+</body>
+</html>
