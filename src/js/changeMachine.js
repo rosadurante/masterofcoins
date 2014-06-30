@@ -19,15 +19,20 @@ define('changeMachine', ['underscore'], function (_) {
                 /** Fixing some special cases when the user uses "£" character at the beginning:
                  *  - Without decimals (without '.'): "£3", "£10".
                  *  - With a '.' as last character of the number: "£5.", "£1.p"
+                 *  - With a '.0' as last character of the number: "£2.0", £1.0p"
                  *  - With a '.00' as last characteres of the number: "£1.00", "£2.00p"
                  */
 
                 if (_.indexOf(amount, '£') !== -1) {
-                    if (_.indexOf(amount, '.') === -1) {
+                    if (amount.indexOf('.') === -1) {
                         amount += '00';
-                    } else if (_.contains(_.last(amount, 2), '.') || _.contains(_.last(amount, 1), '.')) {
+                    } else if (amount.indexOf('.p') !== -1 || _.contains(_.last(amount, 1), '.')) {
                         amount = amount.replace('.', '') + '00';
-                    } else if (_.indexOf(amount, '.00') !== -1 && _.indexOf(amount, '.00') + 3 === amount.length) {
+                    } else if ((amount.indexOf('.0') !== -1 && amount.indexOf('.0') + 2 === amount.length) ||
+                        (amount.indexOf('.0p') !== -1)) {
+                        amount = amount.replace('.', '') + '0';
+                    } else if ((amount.indexOf('.00') !== -1 && amount.indexOf('.00') + 3 === amount.length) ||
+                        (amount.indexOf('.00p') !== -1)) {
                         amount = amount.replace('.', '');
                     }
                 }
