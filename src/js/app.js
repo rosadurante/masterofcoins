@@ -53,8 +53,6 @@ define('app', ['domReady!', 'underscore', 'changeMachine'], function (document, 
             } else {
                 resultElement.innerHTML = _.template(rejectTemplate, {value: amountInputElement.value});
             }
-
-            console.log('Submitted');
         };
 
 
