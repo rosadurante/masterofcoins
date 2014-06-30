@@ -15,6 +15,39 @@ module.exports = function (grunt) {
             }
         },
 
+        watch: {
+            css: {
+                files: '**/*.scss',
+                tasks: ['sass']
+            }
+        },
+
+        jshint: {
+            options: {
+                jshintrc: '.jshintrc',
+                ignores: ['src/js/libs/**/*.js']
+            },
+            all: ['gruntfile.js', 'src/js/**/*.js']
+        },
+
+        requirejs: {
+            compile: {
+                options: {
+                    baseUrl: 'src/',
+                    mainConfigFile: 'src/js/config.js',
+                    out: 'src/js/app.js'
+                }
+            }
+        },
+
+        jasmine: {
+            src: 'src/js/**/*.js',
+            options: {
+                specs: 'src/js/**/*Spec.js',
+                vendor: 'src/js/libs/**/*.js'
+            }
+        },
+
         connect: {
             server: {
                 options: {
@@ -36,10 +69,18 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-connect');
 
+    grunt.registerTask('watch', 'Watching Sass', [
+        'sass:dev', 'watch'
+    ]);
+
     grunt.registerTask('dev', 'Compile and open', [
-        'sass:dev', 'connect:dev'
+        'sass:dev', 'jshint', 'jasmine', 'connect:dev'
     ]);
 
     grunt.registerTask('prod', 'Compile and run server', [
