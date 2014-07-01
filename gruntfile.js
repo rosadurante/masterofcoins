@@ -56,6 +56,15 @@ module.exports = function (grunt) {
             }
         },
 
+        shell: {
+            installDependencies: {
+                command: [
+                    'cd src/js',
+                    'bower install'
+                ].join(' && ')
+            }
+        },
+
         connect: {
             server: {
                 options: {
@@ -82,6 +91,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-shell');
 
     grunt.registerTask('watch', 'Watching Sass', [
         'sass:dev', 'watch'
@@ -92,6 +102,6 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('prod', 'Compile and run server', [
-        'connect:server'
+        'shell', 'connect:server'
     ]);
 };
