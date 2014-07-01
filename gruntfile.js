@@ -102,6 +102,6 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('prod', 'Compile and run server', [
-        'shell', 'connect:server'
+        'shell', 'requirejs:compile', 'connect:server'
     ]);
 };
