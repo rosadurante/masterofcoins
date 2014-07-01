@@ -6,5 +6,6 @@ node_modules
 
 src/css/styles.css
 src/js/libs
+src/js/build
 
 src/js/specs/specRunner.html

@@ -33,8 +33,10 @@ module.exports = function (grunt) {
         requirejs: {
             compile: {
                 options: {
-                    baseUrl: 'src/',
+                    name: 'app',
+                    baseUrl: 'src/js',
                     mainConfigFile: 'src/js/config.js',
+                    optimize: 'uglify2',
                     out: 'src/js/build/app.js'
                 }
             }
