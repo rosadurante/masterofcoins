@@ -19,39 +19,30 @@
 </head>
 
 <body>
-  <!-- HEADER -->
-  <header>
-    <div class="wrapper-header">
+  <section>
+    <!-- HEADER -->
+    <header>
       <h1>Master of Coin</h1>
-    </div>
-  </header>
+      <h3>They always pay their debs...</h3>
+    </header>
 
-  <!-- CONTAINER -->
-  <div class="container">
-
-    <div class="wrapper-container">
+    <!-- CONTAINER -->
+    <div class="container">
       <form id="input-form" action="" method="post">
-        <label for="amount">Introduce amount:</label>
         <input type="text" id="amount" name="amount" placeholder="Examples: £3.4, 85p, 3.45, £0.90">
         <input type="submit" id="submit-form" value="Calculate"> 
         <input type="button" id="reset-form" value="Reset">
       </form>
 
       <div id="output-form"></div>
-
     </div>
 
-  </div>
 
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="wrapper-footer">
-      <div class="copyright">
-        <span>&copy; 2014 Rosa Durante</span>
-      </div>
-    </div>
-  </footer>
+    <!-- FOOTER -->
+    <footer>
+      <span class="copyright">&copy; 2014 Rosa Durante</span>
+    </footer>
+  </section>
 
   <!-- Scripts -->
   <script type="text/javascript" data-main="js/config.js" src="js/libs/requirejs/require.js"></script>
