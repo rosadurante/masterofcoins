@@ -12,6 +12,7 @@ git clone git@github.com:rosadurante/masterofcoins.git
 ```
 
 This project has the next requirements to get it run properly. Make sure you have those tools already set up in your machine:
+* sass
 * node
 * npm
 * grunt / grunt-cli
