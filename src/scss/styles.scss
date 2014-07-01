@@ -104,10 +104,16 @@ section {
         }
 
         @media (max-width: $form-breakpoint) {
+            text-align: center;
+
+            h1, h3 {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
             h3 {
                 display: block;
                 margin-bottom: $line-height / 4;
-                margin-left: $line-height;
             }
         }
     }
