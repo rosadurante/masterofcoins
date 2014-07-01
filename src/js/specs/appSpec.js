@@ -15,6 +15,59 @@ describe('changeSpec', function () {
         });
     });
 
+    afterEach(function () {
+        var input = document.getElementById('amount'),
+            output = document.getElementById('output-form');
+
+        input.value = '';
+        output.innerHTML = '';
+    });
+
+    it('App: submitting form successfully', function () {
+        var input = document.getElementById('amount'),
+            submitButton = document.getElementById('submit-form'),
+            output = document.getElementById('output-form');
+
+        expect(output.children.length).toBe(0);
+        input.value = '£3.4';
+        submitButton.click();
+
+        expect(output.children).not.toBeUndefined();
+        expect(_.contains(output.children[0].classList, 'success')).toBe(true);
+    });
+
+    it('App: submitting form failure', function () {
+        var input = document.getElementById('amount'),
+            submitButton = document.getElementById('submit-form'),
+            output = document.getElementById('output-form');
+
+        expect(output.children.length).toBe(0);
+        input.value = '£3.4pp';
+        submitButton.click();
+
+        expect(output.children).not.toBeUndefined();
+        expect(_.contains(output.children[0].classList, 'error')).toBe(true);
+    });
+
+    it('App: resetting form', function () {
+        var input = document.getElementById('amount'),
+            submitButton = document.getElementById('submit-form'),
+            resetButton = document.getElementById('reset-form'),
+            output = document.getElementById('output-form');
+
+        expect(output.children.length).toBe(0);
+        input.value = '23p';
+        submitButton.click();
+
+        expect(output.children).not.toBeUndefined();
+        expect(output.children.length).toBe(1);
+
+        resetButton.click();
+
+        expect(input.value).toBe('');
+        expect(output.children.length).toBe(0);
+    });
+
     it('ChangeMachine: validation', function () {
         var examples = [
             '4',
