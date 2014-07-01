@@ -92,6 +92,6 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('prod', 'Compile and run server', [
-        'sass:prod', 'requirejs:compile', 'connect:server'
+        'requirejs:compile', 'connect:server'
     ]);
 };
