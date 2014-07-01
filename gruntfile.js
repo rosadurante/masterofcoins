@@ -37,7 +37,7 @@ module.exports = function (grunt) {
                     baseUrl: 'src/js',
                     mainConfigFile: 'src/js/config.js',
                     optimize: 'uglify2',
-                    out: 'src/js/build/app.js'
+                    out: 'src/js/app.js'
                 }
             }
         },
@@ -92,6 +92,6 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('prod', 'Compile and run server', [
-        'sass:prod', 'connect:server'
+        'sass:prod', 'requirejs:compile', 'connect:server'
     ]);
 };
