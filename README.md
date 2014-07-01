@@ -1,6 +1,6 @@
 # Master of Coins
 
-An implementation of Greedy algorithms solving, in this case, the cashier change.
+An implementation of Greedy algorithms solving, in this case, the cashier change. Check it out at [masterofcoins.herokuapp.com](http://masterofcoins.herokuapp.com/)
 
 ## Get started
 
