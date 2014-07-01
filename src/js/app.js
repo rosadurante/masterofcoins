@@ -15,7 +15,7 @@ define('app', ['domReady!', 'underscore', 'changeMachine'], function (document, 
                 '<ul>' +
                     '<% _.each(coins, function(coin) { %>' +
                         '<li class="coin">' +
-                            '<p><%= coin.kind %>: <span><%= coin.amount %></span> coins</p>' +
+                            '<p><span class="<%= coin.kind %>"><%= coin.kind %></span> x <%= coin.amount %></p>' +
                         '</li>' +
                     '<% }); %>' +
                 '</ul>' +
