@@ -1,4 +1,10 @@
 .DS_Store
+.grunt
+.sass-cache
+
 node_modules
+
 src/css/styles.css
 src/js/libs
+
+src/js/specs/specRunner.html
